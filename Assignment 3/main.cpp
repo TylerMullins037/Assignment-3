@@ -3,11 +3,14 @@
 #include <iostream>
 
 int main() {
+    // Create instances of ExpressionManager and Queue
     ExpressionManager expManager;
     Queue<int> q; // You can change the itemType to string, char, and double
     string expression;
 
+    // Main program loop
     while (true) {
+        // Display menu options
         cout << "Menu:" << endl;
         cout << "1. Enter an infix expression and convert to postfix" << endl;
         cout << "2. Check for balanced parentheses in an expression" << endl;
@@ -18,11 +21,14 @@ int main() {
         cout << "7. Exit" << endl;
         cout << "Enter your choice (1-7): ";
 
+        // User input for menu choice
         int choice;
         cin >> choice;
 
+        // Switch statement to handle menu choices
         switch (choice) {
         case 1:
+            // Option to convert infix expression to postfix
             cout << "Enter an infix expression: ";
             cin >> expression;
             if (!expManager.isBalanced(expression)) {
@@ -34,6 +40,7 @@ int main() {
             }
             break;
         case 2:
+            // Option to check for balanced parentheses in an expression
             cout << "Enter an expression to check for balanced parentheses: ";
             cin >> expression;
             if (expManager.isBalanced(expression)) {
@@ -44,12 +51,14 @@ int main() {
             }
             break;
         case 3:
+            // Option to enqueue an element in the queue
             int element;
             cout << "Enter an element to enqueue: ";
             cin >> element;
             q.enqueue(element);
             break;
         case 4:
+            // Option to dequeue an element from the queue
             if (!q.isEmpty()) {
                 cout << "Dequeue: " << q.dequeue() << endl;
             }
@@ -58,6 +67,7 @@ int main() {
             }
             break;
         case 5:
+            // Option to get the front element of the queue
             if (!q.isEmpty()) {
                 cout << "Front element: " << q.top() << endl;
             }
@@ -66,17 +76,23 @@ int main() {
             }
             break;
         case 6:
+            // Option to get the size of the queue
             cout << "Queue size: " << q.size() << endl;
             break;
         case 7:
+            // Exit the program
             cout << "Exiting the program." << endl;
             return 0;
         default:
-            cout << "Invalid choice. Please select a valid option (1-7)." << endl;
-            break;
+            // Handle invalid input
+            if (cin.fail()) {
+                cout << "Invalid input. Please enter a number on the menu.\n" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the error state and ignore invalid characters
+                break; // Exit this case
+            }
         }
     }
 
     return 0;
 }
-
