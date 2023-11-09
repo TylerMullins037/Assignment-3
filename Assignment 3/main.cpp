@@ -4,7 +4,7 @@
 
 int main() {
     ExpressionManager expManager;
-    Queue q;
+    Queue<int> q; // You can change the itemType to string, char, and double
     string expression;
 
     while (true) {
@@ -59,7 +59,7 @@ int main() {
             break;
         case 5:
             if (!q.isEmpty()) {
-                cout << "Front element: " << q.frontElement() << endl;
+                cout << "Front element: " << q.top() << endl;
             }
             else {
                 cout << "Queue is empty. No front element." << endl;
